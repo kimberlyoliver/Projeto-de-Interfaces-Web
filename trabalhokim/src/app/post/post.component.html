@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  
+  <div class="panel-heading">{{posts[index].nomePessoa}}
+      <button (click) = "excluirPost($event)" class = " btn btn-defaut" style="float: right;" (click)="removeu(posts[index].id)"><span class = "glyphicon glyphicon-remove"></span></button>
+  </div>
+  <div class="panel-body">{{posts[index].texto}}</div>
+  <div class="panel-footer">{{posts[index].qtdLikes}}
+    <button (click) = "curtiu($event);"
+      class="btn btn-defaut">like</button>
+  </div>
+
+  
