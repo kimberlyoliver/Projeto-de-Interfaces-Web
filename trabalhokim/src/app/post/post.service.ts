@@ -5,9 +5,9 @@ import { Post } from './post.model'
 export class PostService{
     
     posts = [
-        new Post(1, "PessoaUm", "Eu sou a primeira pessoa", 1),
-        new Post(2, "PessoaDois", "Eu não sou a primeira pessoa, eu sou a segunda pessoa", 1),
-        new Post(3, "PessoaTres", "Eu sou a terceira pessoa, sou melhor que as anteriores", 1)
+        new Post(1, "PessoaUm", "Eu sou a primeira pessoa", 0),
+        new Post(2, "PessoaDois", "Eu não sou a primeira pessoa, eu sou a segunda pessoa", 0),
+        new Post(3, "PessoaTres", "Eu sou a terceira pessoa, sou melhor que as anteriores", 0)
     ]
 
     getPosts(){
@@ -35,4 +35,12 @@ export class PostService{
         this.posts.splice(indice,1)
       }
 
+      addPosts(){
+        return this.posts;
+      }
+
+      caputurarLike(post: Post){
+        let indice = this.posts.indexOf(post)
+        this.posts[indice].qtdLikes +=1
+      }
 }
