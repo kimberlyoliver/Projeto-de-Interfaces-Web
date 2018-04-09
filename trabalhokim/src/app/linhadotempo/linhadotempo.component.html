@@ -1,7 +1,6 @@
-<app-post-input></app-post-input>
 <app-post [posts]="posts"
         [index]="index"
         (recebeuLike)="capturarLike($event)"
-        (removerPost)="removerPost($event)"
+        (excluirPost)="removerPost($event)"
         *ngFor ="let index=index; let post of posts;">
 </app-post> <!-- [index] = "index" salva o index a cada for, para nao perde-lo. capturarLike é uma função. $event está recebendo algo de algum outro lugar -->

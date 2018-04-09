@@ -16,15 +16,55 @@ export class LinhadotempoComponent implements OnInit {
   }
 
   capturarLike(post:Post){
-    this.pservice.capturarLike(post)
+    this.pservice.capturarLike(post).subscribe(
+      (data) => {
+        console.log("likado")
+        this.loadPosts()
+      },
+      (error) =>{
+        console.log(error)
+      }
+    )
   }
 
   removerPost(id:number){
-    this.pservice.excluirPost(id)
+    this.pservice.excluirPost(id).subscribe(
+      (data) => {
+        console.log("postagem excluida")
+        this.loadPosts()
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+
+  editPost (post: Post){
+    this.pservice.editPost(post).subscribe(
+      (data) => {
+        console.log("edição concluida")
+        this.loadPosts()
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 
   ngOnInit() {
-    this.posts = this.pservice.getPosts()
+    this.loadPosts()
+  }
+
+  loadPosts(){
+    this.pservice.getPosts().subscribe(
+      (data) => {
+        console.log(data)
+        this.posts = data
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
   }
 
 }

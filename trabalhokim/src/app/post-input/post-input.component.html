@@ -1,10 +1,28 @@
 <form>
-  <div class="form-group">
-    <label for="formGroupExampleInput">Insira seu nome</label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+  <div class="form-group" >
+    <input 
+          type="text" 
+          class="form-control" 
+          id="inputSuccess1" 
+          placeholder="Deixa eu te conhecer, me diga seu nome"
+          aria-describedby="helpBlock2"
+          [(ngModel)]="nomePessoa"
+          name="input-nome"
+          />
   </div>
-  <div class="form-group">
-    <label for="formGroupExampleInput2">O que você está pensando?</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+  
+  <div class="form-group" >
+    <input 
+          type="text" 
+          class="form-control" 
+          id="inputSuccess2" 
+          placeholder="No que você está pensando?"
+          [(ngModel)]="texto"
+          name="input-texto"
+          />
   </div>
-</form>
+  <button (click)="submeterPost($event);" 
+      class="btn btn-primary">Vai!
+    </button>
+  </form>
+

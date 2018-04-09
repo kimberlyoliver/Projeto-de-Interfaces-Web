@@ -13,17 +13,38 @@ export class PostComponent implements OnInit {
   @Input() index:number;
   @Output() recebeuLike = new EventEmitter<any>();
   @Output() excluirPost = new EventEmitter();
+  @Output() editPost = new EventEmitter();
+  
+  edicao: boolean = false;
+  textoEdit: string = ""
 
   constructor() { }
 
   curtiu(){
-    this.posts[this.index].qtdLikes+=1;
     this.recebeuLike.emit(this.posts[this.index]); //este 'recebeuLike' está enviando um Post inteiro para algum lugar
   }
 
   removeu(id:number){
     this.excluirPost.emit(id)
   }
+
+  editou(post: Post){
+    post.texto = this.textoEdit
+    this.edicao = false;
+    this.textoEdit = "";
+    this.editPost.emit(post)
+  }
+
+  cancelar(){
+    this.edicao = false;
+    this.textoEdit = "";
+  }
+
+  ativarEdicao(){
+    this.edicao = true;
+    this.textoEdit = this.posts[this.index].texto
+  }
+
 
   ngOnInit() {
   }

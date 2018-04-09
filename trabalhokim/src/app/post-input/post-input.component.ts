@@ -19,11 +19,18 @@ export class PostInputComponent implements OnInit {
   }
 
   submeterPost(event){
-    event.preventDefaut()
+    event.preventDefault()
     if(this.nomePessoa != ''&& this.texto != ''){
-      let p = new Post(this.id, this.nomePessoa, this.texto, this.qtdLikes)
+      let p = new Post(null, this.nomePessoa, this.texto, this.qtdLikes)
       console.log(p)
-      this.pservice.addPost(p)
+      this.pservice.addPost(p).subscribe(
+        (data) => {
+          console.log(data) //data quando dá certo
+        },
+        (error) =>{
+          console.log(error); //error para erro
+        }
+      )
     }
   }
   
