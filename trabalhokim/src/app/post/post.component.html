@@ -4,21 +4,22 @@
   </div>
 
   <div class="panel-body" style = "background-color: rgb(189, 184, 238);">{{posts[index].texto}}</div>
-  <div class="panel-footer">{{posts[index].qtdLikes}}<button style = "margin: 10px;" (click) = "curtiu($event);"class="btn btn-defaut"><span class = "glyphicon glyphicon-thumbs-up"></span></button></div>
-
-</div>
-
-
-<div *ngIf="edicao">
   
-  <button *ngIf= "!edicao" style="float: left;" (click) = "ativarEdicao()"><span class="glyphicon glyphicon-pencil"></span>Editar</button>
   
-  <div>
+  <div class="panel-footer">{{posts[index].qtdLikes}}<button style = "margin: 10px; display: inline-block;" (click) = "curtiu($event);"class="btn btn-defaut"><span class = "glyphicon glyphicon-thumbs-up"></span></button></div>
+
+  <button class = " btn btn-defaut" style="float: right; display: inline-block; margin-top: -45px; margin-right: 15px;" (click) = "ativarEdicao()"><span class="glyphicon glyphicon-pencil"></span></button>
+  <div *ngIf="edicao">
     <textarea name="texto-input" [(ngModel)]="this.textoEdit"></textarea><br>
     <button class="btn btn-primary" (click)="editou(posts[index])">Concluir</button>
     <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
   </div>
 
 </div>
+
+
+
+
+
 
   
