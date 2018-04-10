@@ -11,7 +11,7 @@ export class PostComponent implements OnInit {
 
   @Input() posts: Post[]; //lista de classes tipo Post
   @Input() index:number;
-  @Output() recebeuLike = new EventEmitter<any>();
+  @Output() recebeuLike = new EventEmitter<any>(); // aqui que vai emitir os eventos
   @Output() excluirPost = new EventEmitter();
   @Output() editPost = new EventEmitter();
   

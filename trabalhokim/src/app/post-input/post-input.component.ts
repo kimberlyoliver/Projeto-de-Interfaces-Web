@@ -21,9 +21,9 @@ export class PostInputComponent implements OnInit {
   submeterPost(event){
     event.preventDefault()
     if(this.nomePessoa != ''&& this.texto != ''){
-      let p = new Post(null, this.nomePessoa, this.texto, this.qtdLikes)
+      let p = new Post(null, this.nomePessoa, this.texto, this.qtdLikes) //junta as informações
       console.log(p)
-      this.pservice.addPost(p).subscribe(
+      this.pservice.addPost(p).subscribe( //envia as informações para o service
         (data) => {
           console.log(data) //data quando dá certo
         },

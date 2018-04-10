@@ -12,6 +12,8 @@ import { PostInputComponent } from './post-input/post-input.component';
 import { routing } from './app.routing'
 import { PostService } from './post/post.service';
 
+//todos os imports para serem usados na aplicação
+
 @NgModule({
   declarations: [
     AppComponent,

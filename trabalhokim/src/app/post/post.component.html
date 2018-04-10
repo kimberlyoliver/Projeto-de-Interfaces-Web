@@ -3,7 +3,7 @@
     <button class = " btn btn-defaut" style="float: right;" (click) ="removeu(posts[index].id)"><span class = "glyphicon glyphicon-remove"></span></button>
   </div>
 
-  <div class="panel-body" style = "background-color: rgb(189, 184, 238);">{{posts[index].texto}}</div>
+  <div class="panel-body" style = "background-color: rgb(189, 184, 238);" *ngIf= "!edicao">{{posts[index].texto}}</div>
   
   
   <div class="panel-footer">{{posts[index].qtdLikes}}<button style = "margin: 10px; display: inline-block;" (click) = "curtiu($event);"class="btn btn-defaut"><span class = "glyphicon glyphicon-thumbs-up"></span></button></div>
@@ -14,6 +14,8 @@
     <button class="btn btn-primary" (click)="editou(posts[index])">Concluir</button>
     <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
   </div>
+
+  <!-- se a função de edição for executada, o texto será substituido -->
 
 </div>
 
