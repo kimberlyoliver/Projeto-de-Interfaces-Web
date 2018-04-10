@@ -5,7 +5,7 @@ import { Observable } from 'rxjs'
 import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/map'
 
-@Injectable()
+@Injectable() //coisas daqui serão injetadas em outros componentes
 export class PostService{
 
     constructor(private http:Http){
@@ -20,42 +20,31 @@ export class PostService{
     //     new Post(3, "PessoaTres", "Eu sou a terceira pessoa, sou melhor que as anteriores", 0)
     // ]
 
-    posts:Post[] = [];
+    posts:Post[] = []; //lista de posts
 
-      getPosts(){
-        return this.http.get(this.url)
-        .map((response:Response) => {
-            this.posts = []
-            for(let p of response.json()){
-              this.posts.push(new Post(p.id, p.nomePessoa, p.texto, p.qtdLikes))
-            }
-            return this.posts
-          }
-        )
-        .catch((error:Response) => Observable.throw(error))
-      }
-        
       addPost(post: Post){
-        return this.http.post(this.url, post)
+        return this.http.post(this.url, post) // url rest
           .map((response:Response) => response.json()) //map se der certo - Response filtra só o resultado
           .catch((error:Response) => Observable.throw(error)) //catch se der errado
       }
 
-      editPost(post: Post){
-        return this.http.post(this.url + "/" + post.id, post)
-        .map((response:Response) => response.json()) //map se der certo - Response filtra só o resultado
-        .catch((error:Response) => Observable.throw(error)) //catch se der errado
-      }
-    
-      excluirPost(id:number){
-        return this.http.delete(this.url + "/" + id)
-          .map((response:Response) => response.text)
-          .catch((error:Response) => Observable.throw(error)) //catch se der errado
-        
+      getPosts(){
+        return this.http.get(this.url)
+        .map((response:Response) => {
+            this.posts = [] //começa vazia para não repetir informações
+            for(let p of response.json()){
+              this.posts.push(new Post(p.id, p.nomePessoa, p.texto, p.qtdLikes)) //add um post na lista de posts
+            }
+            return this.posts
+          }
+        )
+        .catch((error:Response) => Observable.throw(error)) //throw = ativar erro
       }
 
-      addPosts(){
-        return this.posts;
+      editPost(post: Post){
+        return this.http.put(this.url + "/" + post.id, post) // put atualizar = estava post, por isso não estava dando certo
+        .map((response:Response) => response.json()) //map se der certo - Response filtra só o resultado
+        .catch((error:Response) => Observable.throw(error)) //catch se der errado
       }
 
       capturarLike(post: Post){
@@ -63,5 +52,11 @@ export class PostService{
         return this.http.put(this.url + "/" + post.id, post)
         .map((response: Response) => response.json())
         .catch((error:Response) => Observable.throw(error)) //catch se der errado
+      }
+
+      excluirPost(id:number){
+        return this.http.delete(this.url + "/" + id)
+          .map((response:Response) => response.text)
+          .catch((error:Response) => Observable.throw(error)) //catch se der errado
       }
 }
